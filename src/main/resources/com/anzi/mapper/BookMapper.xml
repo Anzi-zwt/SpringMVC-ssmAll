@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+    namespace:名称空间，随便什么
+-->
+<mapper namespace="com.anzi.mapper.BookMapper">
+
+    <!--    <resultMap id="seStudent" type="com.anzi.pojo.Student">-->
+    <!--        <result property="id" column="sid"></result>-->
+    <!--        <result property="name" column="sname"></result>-->
+    <!--        <association property="t" javaType="com.anzi.pojo.Teacher">-->
+    <!--            <result property="id" column="ttid"></result>-->
+    <!--            <result property="name" column="tname"></result>-->
+    <!--        </association>-->
+    <!--    </resultMap>-->
+
+    <!--对应的一条sql语句，id是这条语句的唯一标识，返回类型是结果对象的java类名-->
+    <insert id="addBooks" parameterType="com.anzi.pojo.Books">
+        insert into books (bookName, bookCounts, detail) VALUES (#{bookName}, #{bookCounts}, #{detail});
+    </insert>
+
+    <delete id="deleteBookById" parameterType="int">
+        delete from books while bookID = #{id};
+    </delete>
+
+    <update id="updateBook" parameterType="com.anzi.pojo.Books">
+        update books set bookName = #{bookName}, bookCounts = #{bookCounts}, detail = #{detail} where bookID = #{bookID};
+    </update>
+
+    <select id="queryBookById" resultType="com.anzi.pojo.Books">
+        select * from books where bookID = #{id1};
+    </select>
+
+    <select id="queryAllBook" resultType="com.anzi.pojo.Books">
+        select * from books;
+    </select>
+
+
+
+</mapper>
